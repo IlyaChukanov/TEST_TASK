@@ -17,3 +17,21 @@ Restrictions:
   • Must be built and run on a “clean” system (say, on Ubuntu 20.04/22.04, and preferably in a Docker image of Ubuntu (“docker pull ubuntu”); and if on some other system, it must be specified explicitly ),
   • without presets (not counting standard g++, make, cmake). Everything that is required for assembly/work besides this, all dependencies, must be specified explicitly.
   • The project must be located in some git repository.
+
+
+
+Для запуска проекта через Cmake Нужно выполнить следующие команды в терминале:
+
+mkdir build
+cd build
+cmake ..
+make
+./my_service
+`
+
+Для того, чтобы проверить работу сервиса, можно использовать утилиту qdbus, которая позволяет отправлять сообщения на шину DBUS из командной строки. Например, для того, чтобы отправить сообщение "Привет, Мир!" сервису, нужно выполнить следующую команду в другом терминале:
+
+qdbus org.example.MyService /MyService org.example.MyService.sendMessage "Привет, Мир!"
+В терминале, где запущен наш сервис, должно появиться сообщение:
+
+Получено сообщение: Привет, Мир!
